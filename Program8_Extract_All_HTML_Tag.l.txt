@@ -1,0 +1,15 @@
+%{
+#include<stdio.h>
+%}
+%%
+\<[^>]*\> fprintf(yyout,"%s",yytext);
+.|\n;
+%%
+int yywrap(){
+return 1;
+}
+int main(int k,char **argcv){
+yyin=fopen(argcv[1],"r");
+yyout=fopen("output.txt","w");
+yylex();
+}
